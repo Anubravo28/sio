@@ -28,12 +28,11 @@
             }
         }
     </script>
-    <!-- Google Fonts: Inter & Icons -->
+    <!-- Google Fonts & FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Apple-Grade Glossy Glassmorphism Styles */
         .glass-hdr {
             background: rgba(255, 255, 255, 0.45);
             backdrop-filter: blur(24px) saturate(190%);
@@ -88,7 +87,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Ambient Glow Effect */
         .ambient-glow {
             position: absolute;
             width: 45vw;
@@ -102,44 +100,31 @@
             pointer-events: none;
         }
 
-        /* Mobile Snap Scroll */
         .snap-carousel {
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
         }
-        .snap-item {
-            scroll-snap-align: start;
-        }
+        .snap-item { scroll-snap-align: start; }
 
-        /* Hide scrollbars cleanly */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Dynamic Viewport Unit for Mobile Safari */
         .min-dvh { min-height: 100dvh; }
-        .h-dvh { height: 100dvh; }
-
-        /* iOS Safe Area Padding Support */
         .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
         .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
     </style>
 </head>
 <body class="bg-slate-100 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans antialiased selection:bg-rose-500 selection:text-white min-dvh flex flex-col pb-24 md:pb-0">
 
-    <!-- Ambient Ambient Glow Background Orbs -->
     <div class="ambient-glow top-0 left-1/4 animate-pulse"></div>
     <div class="ambient-glow top-1/3 right-5 animate-pulse" style="animation-delay: 2s;"></div>
     <div class="ambient-glow bottom-1/4 left-10 animate-pulse" style="animation-delay: 4s;"></div>
 
-    <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-20 right-4 left-4 sm:left-auto sm:right-6 z-50 flex flex-col space-y-3 pointer-events-none"></div>
 
-    <!-- TOP DESKTOP & TABLET GLASS HEADER -->
     <header class="fixed top-0 inset-x-0 z-40 glass-hdr transition-all duration-300 pt-safe">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-            
-            <!-- Brand Logo -->
             <a href="#" class="flex items-center space-x-3 group">
                 <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-500 via-pink-500 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-rose-500/25 group-hover:scale-105 transition-transform duration-300">
                     <i class="fa-solid fa-yarn text-lg"></i>
@@ -150,7 +135,6 @@
                 </div>
             </a>
 
-            <!-- Desktop Navigation Links -->
             <nav class="hidden md:flex items-center space-x-1 glass-pill px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-700 dark:text-zinc-200">
                 <a href="#shop" class="px-3 py-1.5 rounded-full hover:text-rose-500 hover:bg-white/40 dark:hover:bg-white/10 transition-all">Collection</a>
                 <a href="#craftsmanship" class="px-3 py-1.5 rounded-full hover:text-rose-500 hover:bg-white/40 dark:hover:bg-white/10 transition-all">Craftsmanship</a>
@@ -160,16 +144,12 @@
                 <a href="#story" class="px-3 py-1.5 rounded-full hover:text-rose-500 hover:bg-white/40 dark:hover:bg-white/10 transition-all">Story</a>
             </nav>
 
-            <!-- Actions: Search, Currency, Theme, Cart -->
             <div class="flex items-center space-x-2 sm:space-x-3">
-                
-                <!-- Search Bar (Desktop) -->
                 <div class="hidden lg:flex items-center relative">
                     <i class="fa-solid fa-search text-xs text-zinc-400 absolute left-3"></i>
                     <input type="text" id="desktop-search" onkeyup="handleSearch(this.value)" placeholder="Search crochet art..." class="w-48 xl:w-60 pl-8 pr-4 py-1.5 text-xs rounded-full bg-white/50 dark:bg-zinc-900/50 border border-white/60 dark:border-zinc-800/80 focus:outline-none focus:ring-2 focus:ring-rose-500/50 transition-all">
                 </div>
 
-                <!-- Currency Selector -->
                 <div class="glass-pill rounded-full px-2 py-1 flex items-center">
                     <i class="fa-solid fa-coins text-[10px] text-amber-500 ml-1.5 mr-1"></i>
                     <select id="currency-selector" onchange="changeCurrency(this.value)" class="bg-transparent text-[11px] font-bold focus:outline-none cursor-pointer pr-1">
@@ -180,12 +160,10 @@
                     </select>
                 </div>
 
-                <!-- Dark / Light Mode Toggle -->
                 <button onclick="toggleTheme()" class="w-9 h-9 rounded-full glass-pill flex items-center justify-center text-zinc-700 dark:text-zinc-200 hover:scale-105 active:scale-95 transition-all" aria-label="Toggle Theme">
                     <i id="theme-icon" class="fa-solid fa-moon text-xs"></i>
                 </button>
 
-                <!-- Desktop Cart Trigger -->
                 <button onclick="toggleCartDrawer()" class="hidden md:flex relative px-4 py-2 rounded-full bg-gradient-to-r from-rose-500 to-pink-600 text-white font-semibold text-xs items-center space-x-2 shadow-lg shadow-rose-500/20 hover:scale-105 active:scale-95 transition-all">
                     <i class="fa-solid fa-bag-shopping text-sm"></i>
                     <span>Bag</span>
@@ -195,19 +173,13 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT CONTAINER -->
     <main class="flex-grow pt-20 sm:pt-28">
-
-        <!-- HERO SECTION -->
         <section class="relative px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-6 pb-12 sm:py-16 text-center">
-            
-            <!-- Floating Apple-like Glossy Pill Badge -->
             <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full glass-pill text-xs font-semibold text-rose-600 dark:text-rose-400 mb-6 shadow-sm border border-rose-500/20">
                 <i class="fa-solid fa-sparkles text-[10px] animate-pulse"></i>
                 <span>Handmade Organic Yarn Collection 2026</span>
             </div>
 
-            <!-- Main Heading -->
             <h1 class="text-3xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto leading-[1.15] mb-6">
                 Cultured Heritage, <br>
                 <span class="bg-gradient-to-r from-rose-600 via-pink-500 to-purple-600 bg-clip-text text-transparent">Spun into Modern Elegance.</span>
@@ -217,7 +189,6 @@
                 Handcrafted in Nepal with 100% sustainable organic wool & cotton yarn. Sio Dhago blends traditional textile art with global street trends.
             </p>
 
-            <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto">
                 <a href="#shop" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-semibold text-xs shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center space-x-2">
                     <span>Explore Creations</span>
@@ -229,7 +200,6 @@
                 </button>
             </div>
 
-            <!-- Key Feature Highlights -->
             <div class="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                 <div class="glass-card p-4 rounded-2xl text-center">
                     <i class="fa-solid fa-leaf text-emerald-500 text-lg mb-1"></i>
@@ -254,23 +224,18 @@
             </div>
         </section>
 
-        <!-- SEARCH & CATEGORY FILTERING -->
         <section id="shop" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            
-            <!-- Mobile Search Bar -->
             <div class="lg:hidden mb-6 relative">
                 <i class="fa-solid fa-search text-xs text-zinc-400 absolute left-4 top-3.5"></i>
                 <input type="text" id="mobile-search" onkeyup="handleSearch(this.value)" placeholder="Search wearables, bags, toys..." class="w-full pl-10 pr-4 py-2.5 text-xs rounded-2xl glass-card focus:outline-none focus:ring-2 focus:ring-rose-500">
             </div>
 
-            <!-- Section Controls & Sorting -->
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
                 <div>
                     <span class="text-[11px] font-extrabold uppercase tracking-widest text-rose-600 dark:text-rose-400">Handcrafted Catalog</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Curated Creations</h2>
                 </div>
 
-                <!-- Sort Control -->
                 <div class="flex items-center space-x-2 self-end md:self-auto">
                     <span class="text-xs text-zinc-500 dark:text-zinc-400 font-medium">Sort by:</span>
                     <select id="sort-selector" onchange="handleSort(this.value)" class="text-xs font-semibold px-3 py-1.5 rounded-xl glass-pill focus:outline-none cursor-pointer">
@@ -282,7 +247,6 @@
                 </div>
             </div>
 
-            <!-- Touch-Friendly Category Scroll Pills -->
             <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pb-3 mb-6 snap-carousel">
                 <button onclick="filterCategory('All')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all bg-rose-600 text-white shadow-md shadow-rose-600/20" data-cat="All">All Items</button>
                 <button onclick="filterCategory('Crochet Apparel')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill hover:bg-white/60 dark:hover:bg-zinc-800/60" data-cat="Crochet Apparel">Crochet Apparel</button>
@@ -291,13 +255,9 @@
                 <button onclick="filterCategory('Home & Living')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill hover:bg-white/60 dark:hover:bg-zinc-800/60" data-cat="Home & Living">Home & Living</button>
             </div>
 
-            <!-- PRODUCT GRID -->
-            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-                <!-- Dynamically Populated Cards -->
-            </div>
+            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6"></div>
         </section>
 
-        <!-- CUSTOM ORDER PROMO BANNER -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="glass-card rounded-3xl p-6 sm:p-10 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 border border-rose-500/20">
                 <div class="max-w-xl z-10">
@@ -319,7 +279,6 @@
             </div>
         </section>
 
-        <!-- STORY & CRAFTSMANSHIP -->
         <section id="craftsmanship" class="py-16 glass-hdr my-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-12">
@@ -357,10 +316,8 @@
                 </div>
             </div>
         </section>
-
     </main>
 
-    <!-- FOOTER -->
     <footer id="story" class="glass-hdr border-t border-zinc-200/50 dark:border-zinc-800/50 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-zinc-200/50 dark:border-zinc-800/50">
@@ -413,62 +370,47 @@
         </div>
     </footer>
 
-    <!-- MOBILE BOTTOM FLOATING NAVIGATION BAR -->
     <div class="md:hidden fixed bottom-3 inset-x-3 z-40 pb-safe">
         <div class="glass-hdr rounded-full px-6 py-2.5 flex items-center justify-between shadow-2xl border border-white/50 dark:border-white/10">
-            
             <a href="#" class="flex flex-col items-center text-zinc-600 dark:text-zinc-300 hover:text-rose-500 text-[10px] font-medium">
                 <i class="fa-solid fa-house text-base mb-0.5"></i>
                 <span>Home</span>
             </a>
-
             <a href="#shop" class="flex flex-col items-center text-zinc-600 dark:text-zinc-300 hover:text-rose-500 text-[10px] font-medium">
                 <i class="fa-solid fa-grid-2 text-base mb-0.5"></i>
                 <span>Shop</span>
             </a>
-
             <button onclick="openCustomOrderModal()" class="flex flex-col items-center text-rose-500 text-[10px] font-medium">
                 <div class="w-10 h-10 -mt-6 rounded-full bg-gradient-to-tr from-rose-500 to-purple-600 text-white flex items-center justify-center shadow-lg shadow-rose-500/40">
                     <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
                 </div>
                 <span class="mt-0.5">Custom</span>
             </button>
-
             <button onclick="toggleWishlistDrawer()" class="flex flex-col items-center text-zinc-600 dark:text-zinc-300 hover:text-rose-500 text-[10px] font-medium relative">
                 <i class="fa-solid fa-heart text-base mb-0.5"></i>
                 <span>Saved</span>
                 <span id="wishlist-badge-mobile" class="hidden absolute -top-1 right-1 w-2 h-2 rounded-full bg-rose-500"></span>
             </button>
-
             <button onclick="toggleCartDrawer()" class="flex flex-col items-center text-zinc-600 dark:text-zinc-300 hover:text-rose-500 text-[10px] font-medium relative">
                 <i class="fa-solid fa-bag-shopping text-base mb-0.5"></i>
                 <span>Bag</span>
                 <span id="cart-badge-mobile" class="absolute -top-1.5 -right-1.5 bg-rose-600 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
             </button>
-
         </div>
     </div>
 
-    <!-- PRODUCT DETAIL QUICK VIEW MODAL -->
     <div id="product-modal" class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-md hidden transition-all duration-300">
         <div id="modal-content" class="glass-modal max-w-2xl w-full rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl relative transform translate-y-full sm:translate-y-0 sm:scale-95 opacity-0 transition-all duration-300 max-h-[90dvh] flex flex-col">
-            
-            <!-- Close Button -->
             <button onclick="closeProductModal()" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full glass-pill flex items-center justify-center text-zinc-700 dark:text-zinc-200">
                 <i class="fa-solid fa-xmark text-xs"></i>
             </button>
 
             <div class="overflow-y-auto flex-1">
                 <div class="grid grid-cols-1 md:grid-cols-2">
-                    <!-- Image Gallery -->
                     <div class="relative aspect-square bg-zinc-200 dark:bg-zinc-800">
                         <img id="modal-img-main" src="" alt="Product" class="w-full h-full object-cover">
-                        <div id="modal-thumbnails" class="absolute bottom-3 inset-x-0 flex justify-center space-x-2 px-4">
-                            <!-- Thumbnails JS rendered -->
-                        </div>
                     </div>
 
-                    <!-- Details -->
                     <div class="p-6 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between">
@@ -480,20 +422,17 @@
                             <div id="modal-price" class="text-lg font-black text-rose-600 dark:text-rose-400 mb-3">$0.00</div>
                             <p id="modal-desc" class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">Description</p>
                             
-                            <!-- Sizes -->
                             <div class="mb-4">
                                 <label class="text-xs font-semibold block mb-1.5">Select Size / Fit</label>
                                 <div id="modal-sizes" class="flex flex-wrap gap-2"></div>
                             </div>
 
-                            <!-- Colors -->
                             <div class="mb-4">
                                 <label class="text-xs font-semibold block mb-1.5">Color Palette</label>
                                 <div id="modal-colors" class="flex items-center space-x-2"></div>
                             </div>
                         </div>
 
-                        <!-- Modal Actions -->
                         <div class="pt-4 border-t border-zinc-200/50 dark:border-zinc-800/50 flex gap-2">
                             <button id="modal-add-btn" class="flex-1 py-3 rounded-2xl bg-rose-600 text-white text-xs font-bold shadow-lg shadow-rose-600/20 hover:bg-rose-700 active:scale-95 transition-all flex items-center justify-center space-x-2">
                                 <i class="fa-solid fa-bag-shopping"></i>
@@ -507,21 +446,16 @@
                 </div>
             </div>
 
-            <!-- Sticky Mobile Quick Bottom Action Bar -->
             <div class="sm:hidden p-3 glass-hdr border-t border-zinc-200/50 dark:border-zinc-800/50 flex items-center justify-between gap-3 pb-safe">
                 <div class="text-xs">
                     <span class="block text-[10px] text-zinc-400">Total Price</span>
                     <span id="modal-sticky-price" class="font-extrabold text-rose-600">$0.00</span>
                 </div>
-                <button id="modal-sticky-add" class="flex-1 py-2.5 rounded-xl bg-rose-600 text-white font-bold text-xs shadow-md">
-                    Add to Bag
-                </button>
+                <button id="modal-sticky-add" class="flex-1 py-2.5 rounded-xl bg-rose-600 text-white font-bold text-xs shadow-md">Add to Bag</button>
             </div>
-
         </div>
     </div>
 
-    <!-- CUSTOM CROCHET ORDER BUILDER MODAL -->
     <div id="custom-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md hidden transition-all duration-300">
         <div id="custom-modal-content" class="glass-modal max-w-lg w-full rounded-3xl p-6 shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300 max-h-[90dvh] overflow-y-auto">
             <button onclick="closeCustomOrderModal()" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full glass-pill flex items-center justify-center text-zinc-700 dark:text-zinc-200">
@@ -575,13 +509,10 @@
         </div>
     </div>
 
-    <!-- CART DRAWER -->
     <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
         <div onclick="toggleCartDrawer()" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
             <div id="cart-panel" class="w-screen max-w-md glass-modal transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl border-l border-white/20">
-                
-                <!-- Drawer Header -->
                 <div class="p-5 border-b border-zinc-200/50 dark:border-zinc-800/50 flex items-center justify-between">
                     <div class="flex items-center space-x-2">
                         <i class="fa-solid fa-bag-shopping text-rose-500"></i>
@@ -593,15 +524,9 @@
                     </button>
                 </div>
 
-                <!-- Items Container -->
-                <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-3">
-                    <!-- JS Populated -->
-                </div>
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
 
-                <!-- Footer Checkout -->
                 <div class="p-5 border-t border-zinc-200/50 dark:border-zinc-800/50 glass-hdr">
-                    
-                    <!-- Coupon Voucher Input -->
                     <div class="flex items-center gap-2 mb-3">
                         <input type="text" id="voucher-code" placeholder="Discount code (e.g. SIO10)" class="flex-1 text-xs px-3 py-2 rounded-xl glass-card focus:outline-none uppercase">
                         <button onclick="applyVoucher()" class="px-3 py-2 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-bold">Apply</button>
@@ -635,12 +560,10 @@
                         <span>Place Order Now</span>
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- WISHLIST DRAWER -->
     <div id="wishlist-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
         <div onclick="toggleWishlistDrawer()" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
@@ -654,16 +577,12 @@
                         <i class="fa-solid fa-xmark text-xs"></i>
                     </button>
                 </div>
-                <div id="wishlist-items-container" class="flex-1 overflow-y-auto p-5 space-y-3">
-                    <!-- JS Populated -->
-                </div>
+                <div id="wishlist-items-container" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
             </div>
         </div>
     </div>
 
-    <!-- APPLICATION JAVASCRIPT LOGIC -->
     <script>
-        // Enhanced Product Catalog with Multiple Gallery Images
         const products = [
             {
                 id: 1,
@@ -672,11 +591,8 @@
                 priceUSD: 135,
                 priceNPR: 18000,
                 tag: "Bestseller",
-                images: [
-                    "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=800&q=80"
-                ],
-                description: "Hand-stitched vintage granny square pattern cardigan made with soft organic wool blend. Perfect layering piece.",
+                images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80"],
+                description: "Hand-stitched vintage granny square pattern cardigan made with soft organic wool blend.",
                 sizes: ["S", "M", "L", "XL"],
                 colors: ["#e11d48", "#9333ea", "#f59e0b"]
             },
@@ -687,10 +603,7 @@
                 priceUSD: 65,
                 priceNPR: 8500,
                 tag: "Artisan Made",
-                images: [
-                    "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80"
-                ],
+                images: ["https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80"],
                 description: "Boho crossbody tote featuring detailed crochet knots, sturdy strap, and organic cotton tassel fringes.",
                 sizes: ["Standard"],
                 colors: ["#d97706", "#4b5563"]
@@ -702,9 +615,7 @@
                 priceUSD: 38,
                 priceNPR: 5000,
                 tag: "Trending",
-                images: [
-                    "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=800&q=80"
-                ],
+                images: ["https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=800&q=80"],
                 description: "Lightweight breathable cotton yarn bucket hat with sunflower embroidery.",
                 sizes: ["S/M", "M/L"],
                 colors: ["#fef08a", "#f472b6"]
@@ -716,9 +627,7 @@
                 priceUSD: 45,
                 priceNPR: 6000,
                 tag: "Handmade",
-                images: [
-                    "https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&w=800&q=80"
-                ],
+                images: ["https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&w=800&q=80"],
                 description: "Super soft velvet yarn bear plushie hand-crocheted with hypoallergenic organic stuffing.",
                 sizes: ["One Size"],
                 colors: ["#16a34a", "#fde047"]
@@ -730,9 +639,7 @@
                 priceUSD: 88,
                 priceNPR: 11500,
                 tag: "Limited",
-                images: [
-                    "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
-                ],
+                images: ["https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"],
                 description: "Intricate mandala fiber wall art mounted on a polished natural rattan hoop.",
                 sizes: ["Medium (18\")", "Large (24\")"],
                 colors: ["#ec4899", "#8b5cf6"]
@@ -744,18 +651,15 @@
                 priceUSD: 72,
                 priceNPR: 9500,
                 tag: "New Arrival",
-                images: [
-                    "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
-                ],
+                images: ["https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"],
                 description: "Minimalist breathable summer knit crop top crafted from 100% combed cotton yarn.",
                 sizes: ["XS", "S", "M", "L"],
                 colors: ["#ffffff", "#f472b6"]
             }
         ];
 
-        // Currency Exchange Config
         const currencies = {
-            NPR: { symbol: "Rs. ", rate: 1, isDefault: true },
+            NPR: { symbol: "Rs. ", rate: 1 },
             USD: { symbol: "$", rate: 0.0075 },
             EUR: { symbol: "€", rate: 0.0069 },
             GBP: { symbol: "£", rate: 0.0059 }
@@ -770,46 +674,31 @@
         let cart = JSON.parse(localStorage.getItem('sd_cart')) || [];
         let wishlist = JSON.parse(localStorage.getItem('sd_wishlist')) || [];
 
-        // Format Currency Helper
         function formatPrice(nprVal) {
             const curr = currencies[currentCurrency];
-            if (currentCurrency === 'NPR') {
-                return curr.symbol + nprVal.toLocaleString();
-            }
-            const converted = nprVal * curr.rate;
-            return curr.symbol + converted.toFixed(2);
+            if (currentCurrency === 'NPR') return curr.symbol + nprVal.toLocaleString();
+            return curr.symbol + (nprVal * curr.rate).toFixed(2);
         }
 
-        // Change Currency
         function changeCurrency(val) {
             currentCurrency = val;
-            renderProducts();
-            renderCart();
-            renderWishlist();
+            renderProducts(); renderCart(); renderWishlist();
         }
 
-        // Filter and Render Product Grid
         function renderProducts() {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
-
             let list = products.filter(p => {
                 const matchesCat = currentCategory === 'All' || p.category === currentCategory;
-                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.description.toLowerCase().includes(searchQuery.toLowerCase());
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
                 return matchesCat && matchesSearch;
             });
 
-            // Sorting
             if (currentSort === 'low-high') list.sort((a,b) => a.priceNPR - b.priceNPR);
             if (currentSort === 'high-low') list.sort((a,b) => b.priceNPR - a.priceNPR);
 
             if (list.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full py-12 text-center">
-                        <i class="fa-solid fa-yarn text-3xl text-zinc-400 mb-2"></i>
-                        <p class="text-xs text-zinc-500 font-medium">No creations match your search.</p>
-                    </div>
-                `;
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-xs text-zinc-500">No creations match your search.</div>`;
                 return;
             }
 
@@ -833,48 +722,27 @@
                     </div>
                     <div class="px-3.5 pb-3.5 sm:px-4 sm:pb-4 flex items-center justify-between mt-2">
                         <span class="text-xs sm:text-sm font-black text-rose-600 dark:text-rose-400">${formatPrice(p.priceNPR)}</span>
-                        <button onclick="quickAddToCart(${p.id})" class="px-3 py-1.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-[10px] sm:text-xs font-bold hover:bg-rose-600 dark:hover:bg-rose-500 dark:hover:text-white transition-all shadow-md">
-                            + Add
-                        </button>
+                        <button onclick="quickAddToCart(${p.id})" class="px-3 py-1.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-[10px] sm:text-xs font-bold hover:bg-rose-600 dark:hover:bg-rose-500 dark:hover:text-white transition-all shadow-md">+ Add</button>
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        // Search & Filter Handlers
-        function handleSearch(val) {
-            searchQuery = val;
-            renderProducts();
-        }
-
+        function handleSearch(val) { searchQuery = val; renderProducts(); }
         function filterCategory(cat) {
             currentCategory = cat;
             document.querySelectorAll('.category-pill').forEach(btn => {
-                if (btn.getAttribute('data-cat') === cat) {
-                    btn.className = "category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all bg-rose-600 text-white shadow-md shadow-rose-600/20";
-                } else {
-                    btn.className = "category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill hover:bg-white/60 dark:hover:bg-zinc-800/60";
-                }
+                btn.className = btn.getAttribute('data-cat') === cat ? "category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all bg-rose-600 text-white shadow-md shadow-rose-600/20" : "category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill hover:bg-white/60 dark:hover:bg-zinc-800/60";
             });
             renderProducts();
         }
+        function handleSort(val) { currentSort = val; renderProducts(); }
 
-        function handleSort(val) {
-            currentSort = val;
-            renderProducts();
-        }
-
-        // Product Modal Quick View
-        let activeModalProduct = null;
-        let selectedSize = '';
-
+        let activeModalProduct = null, selectedSize = '';
         function openProductModal(id) {
-            const p = products.find(item => item.id === id);
-            if (!p) return;
-            activeModalProduct = p;
-            selectedSize = p.sizes[0];
-
+            const p = products.find(item => item.id === id); if (!p) return;
+            activeModalProduct = p; selectedSize = p.sizes[0];
             document.getElementById('modal-img-main').src = p.images[0];
             document.getElementById('modal-title').innerText = p.name;
             document.getElementById('modal-cat').innerText = p.category;
@@ -882,9 +750,7 @@
             document.getElementById('modal-sticky-price').innerText = formatPrice(p.priceNPR);
             document.getElementById('modal-desc').innerText = p.description;
 
-            // Sizes
-            const sizesCont = document.getElementById('modal-sizes');
-            sizesCont.innerHTML = '';
+            const sizesCont = document.getElementById('modal-sizes'); sizesCont.innerHTML = '';
             p.sizes.forEach((s, idx) => {
                 const btn = document.createElement('button');
                 btn.className = `px-3 py-1 rounded-xl text-xs font-bold border ${idx === 0 ? 'bg-rose-600 text-white border-rose-600' : 'glass-pill'}`;
@@ -897,78 +763,35 @@
                 sizesCont.appendChild(btn);
             });
 
-            // Colors
-            const colorsCont = document.getElementById('modal-colors');
-            colorsCont.innerHTML = '';
-            p.colors.forEach(c => {
-                const dot = document.createElement('span');
-                dot.className = "w-5 h-5 rounded-full border-2 border-white shadow-md";
-                dot.style.backgroundColor = c;
-                colorsCont.appendChild(dot);
-            });
+            document.getElementById('modal-add-btn').onclick = () => { addToCart(p.id, selectedSize); closeProductModal(); toggleCartDrawer(); };
+            document.getElementById('modal-sticky-add').onclick = () => { addToCart(p.id, selectedSize); closeProductModal(); toggleCartDrawer(); };
 
-            // Set Add Button Handler
-            document.getElementById('modal-add-btn').onclick = () => {
-                addToCart(p.id, selectedSize);
-                closeProductModal();
-                toggleCartDrawer();
-            };
-            document.getElementById('modal-sticky-add').onclick = () => {
-                addToCart(p.id, selectedSize);
-                closeProductModal();
-                toggleCartDrawer();
-            };
-
-            const modal = document.getElementById('product-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                document.getElementById('modal-content').classList.remove('translate-y-full', 'scale-95', 'opacity-0');
-            }, 10);
+            const modal = document.getElementById('product-modal'); modal.classList.remove('hidden');
+            setTimeout(() => document.getElementById('modal-content').classList.remove('translate-y-full', 'scale-95', 'opacity-0'), 10);
         }
 
         function closeProductModal() {
-            const modalContent = document.getElementById('modal-content');
-            modalContent.classList.add('translate-y-full', 'scale-95', 'opacity-0');
-            setTimeout(() => {
-                document.getElementById('product-modal').classList.add('hidden');
-            }, 300);
+            document.getElementById('modal-content').classList.add('translate-y-full', 'scale-95', 'opacity-0');
+            setTimeout(() => document.getElementById('product-modal').classList.add('hidden'), 300);
         }
 
-        // Cart Logic
-        function quickAddToCart(id) {
-            const p = products.find(i => i.id === id);
-            if (p) addToCart(id, p.sizes[0]);
-        }
-
+        function quickAddToCart(id) { const p = products.find(i => i.id === id); if (p) addToCart(id, p.sizes[0]); }
         function addToCart(id, size) {
-            const p = products.find(i => i.id === id);
-            if (!p) return;
-
+            const p = products.find(i => i.id === id); if (!p) return;
             const existing = cart.find(item => item.id === id && item.size === size);
-            if (existing) {
-                existing.qty += 1;
-            } else {
-                cart.push({ id: p.id, name: p.name, priceNPR: p.priceNPR, image: p.images[0], size: size, qty: 1 });
-            }
-            saveCart();
-            showToast(`Added "${p.name}" to Bag!`);
+            if (existing) existing.qty += 1;
+            else cart.push({ id: p.id, name: p.name, priceNPR: p.priceNPR, image: p.images[0], size: size, qty: 1 });
+            saveCart(); showToast(`Added "${p.name}" to Bag!`);
         }
 
         function updateQty(id, size, delta) {
-            const item = cart.find(i => i.id === id && i.size === size);
-            if (!item) return;
+            const item = cart.find(i => i.id === id && i.size === size); if (!item) return;
             item.qty += delta;
-            if (item.qty <= 0) {
-                cart = cart.filter(i => !(i.id === id && i.size === size));
-            }
+            if (item.qty <= 0) cart = cart.filter(i => !(i.id === id && i.size === size));
             saveCart();
         }
 
-        function saveCart() {
-            localStorage.setItem('sd_cart', JSON.stringify(cart));
-            renderCart();
-        }
-
+        function saveCart() { localStorage.setItem('sd_cart', JSON.stringify(cart)); renderCart(); }
         function renderCart() {
             const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
             document.getElementById('cart-badge-desktop').innerText = totalQty;
@@ -977,19 +800,12 @@
 
             const container = document.getElementById('cart-items-container');
             if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="py-12 text-center text-zinc-400">
-                        <i class="fa-solid fa-bag-shopping text-3xl mb-2"></i>
-                        <p class="text-xs">Your shopping bag is empty.</p>
-                    </div>
-                `;
-                document.getElementById('cart-subtotal').innerText = formatPrice(0);
-                return;
+                container.innerHTML = `<div class="py-12 text-center text-zinc-400 text-xs">Your shopping bag is empty.</div>`;
+                document.getElementById('cart-subtotal').innerText = formatPrice(0); return;
             }
 
             container.innerHTML = '';
             let rawSubtotalNPR = 0;
-
             cart.forEach(item => {
                 rawSubtotalNPR += item.priceNPR * item.qty;
                 const row = document.createElement('div');
@@ -1002,250 +818,118 @@
                         <div class="text-xs font-extrabold text-rose-600 dark:text-rose-400 mt-1">${formatPrice(item.priceNPR)}</div>
                     </div>
                     <div class="flex items-center space-x-2">
-                        <button onclick="updateQty(${item.id}, '${item.size}', -1)" class="w-6 h-6 rounded-lg glass-pill text-xs flex items-center justify-center font-bold">-</button>
+                        <button onclick="updateQty(${item.id}, '${item.size}', -1)" class="w-6 h-6 rounded-lg glass-pill text-xs font-bold">-</button>
                         <span class="text-xs font-bold">${item.qty}</span>
-                        <button onclick="updateQty(${item.id}, '${item.size}', 1)" class="w-6 h-6 rounded-lg glass-pill text-xs flex items-center justify-center font-bold">+</button>
+                        <button onclick="updateQty(${item.id}, '${item.size}', 1)" class="w-6 h-6 rounded-lg glass-pill text-xs font-bold">+</button>
                     </div>
                 `;
                 container.appendChild(row);
             });
-
-            const finalNPR = rawSubtotalNPR * (1 - discountPercent);
-            document.getElementById('cart-subtotal').innerText = formatPrice(finalNPR);
+            document.getElementById('cart-subtotal').innerText = formatPrice(rawSubtotalNPR * (1 - discountPercent));
         }
 
         function applyVoucher() {
-            const code = document.getElementById('voucher-code').value.trim().toUpperCase();
-            if (code === 'SIO10') {
-                discountPercent = 0.1;
-                document.getElementById('discount-row').classList.remove('hidden');
-                showToast('10% Discount applied successfully!');
-                renderCart();
-            } else {
-                showToast('Invalid promo voucher.');
-            }
+            if (document.getElementById('voucher-code').value.trim().toUpperCase() === 'SIO10') {
+                discountPercent = 0.1; document.getElementById('discount-row').classList.remove('hidden'); showToast('10% Discount applied!'); renderCart();
+            } else showToast('Invalid voucher.');
         }
 
-        // Slide Drawer Controls
         function toggleCartDrawer() {
-            const drawer = document.getElementById('cart-drawer');
-            const panel = document.getElementById('cart-panel');
-            if (drawer.classList.contains('hidden')) {
-                drawer.classList.remove('hidden');
-                setTimeout(() => panel.classList.remove('translate-x-full'), 10);
-            } else {
-                panel.classList.add('translate-x-full');
-                setTimeout(() => drawer.classList.add('hidden'), 300);
-            }
+            const drawer = document.getElementById('cart-drawer'), panel = document.getElementById('cart-panel');
+            if (drawer.classList.contains('hidden')) { drawer.classList.remove('hidden'); setTimeout(() => panel.classList.remove('translate-x-full'), 10); }
+            else { panel.classList.add('translate-x-full'); setTimeout(() => drawer.classList.add('hidden'), 300); }
         }
 
-        // Wishlist System
         function toggleWishlist(id) {
-            const p = products.find(i => i.id === id);
-            if (!p) return;
-
+            const p = products.find(i => i.id === id); if (!p) return;
             const idx = wishlist.findIndex(i => i.id === id);
-            if (idx > -1) {
-                wishlist.splice(idx, 1);
-                showToast(`Removed "${p.name}" from saved list.`);
-            } else {
-                wishlist.push(p);
-                showToast(`Saved "${p.name}" to your wishlist!`);
-            }
-            localStorage.setItem('sd_wishlist', JSON.stringify(wishlist));
-            renderProducts();
-            renderWishlist();
+            if (idx > -1) { wishlist.splice(idx, 1); showToast(`Removed "${p.name}"`); }
+            else { wishlist.push(p); showToast(`Saved "${p.name}"`); }
+            localStorage.setItem('sd_wishlist', JSON.stringify(wishlist)); renderProducts(); renderWishlist();
         }
 
         function renderWishlist() {
             const container = document.getElementById('wishlist-items-container');
-            const mobileBadge = document.getElementById('wishlist-badge-mobile');
-            if (wishlist.length > 0) mobileBadge.classList.remove('hidden');
-            else mobileBadge.classList.add('hidden');
-
-            if (wishlist.length === 0) {
-                container.innerHTML = `<div class="py-12 text-center text-xs text-zinc-400">No saved items yet.</div>`;
-                return;
-            }
-
+            if (wishlist.length === 0) { container.innerHTML = `<div class="py-12 text-center text-xs text-zinc-400">No saved items yet.</div>`; return; }
             container.innerHTML = '';
             wishlist.forEach(item => {
-                const row = document.createElement('div');
-                row.className = "flex items-center justify-between p-3 rounded-2xl glass-card";
-                row.innerHTML = `
-                    <div class="flex items-center space-x-3">
-                        <img src="${item.images[0]}" alt="${item.name}" class="w-12 h-12 rounded-xl object-cover">
-                        <div>
-                            <h4 class="text-xs font-bold line-clamp-1">${item.name}</h4>
-                            <div class="text-xs font-extrabold text-rose-600">${formatPrice(item.priceNPR)}</div>
-                        </div>
-                    </div>
-                    <button onclick="quickAddToCart(${item.id}); toggleWishlist(${item.id})" class="px-3 py-1.5 rounded-xl bg-rose-600 text-white text-[10px] font-bold">Move to Bag</button>
-                `;
+                const row = document.createElement('div'); row.className = "flex items-center justify-between p-3 rounded-2xl glass-card";
+                row.innerHTML = `<div class="flex items-center space-x-3"><img src="${item.images[0]}" class="w-12 h-12 rounded-xl object-cover"><div><h4 class="text-xs font-bold line-clamp-1">${item.name}</h4><div class="text-xs font-extrabold text-rose-600">${formatPrice(item.priceNPR)}</div></div></div><button onclick="quickAddToCart(${item.id}); toggleWishlist(${item.id})" class="px-3 py-1.5 rounded-xl bg-rose-600 text-white text-[10px] font-bold">Move to Bag</button>`;
                 container.appendChild(row);
             });
         }
 
         function toggleWishlistDrawer() {
-            const drawer = document.getElementById('wishlist-drawer');
-            const panel = document.getElementById('wishlist-panel');
-            if (drawer.classList.contains('hidden')) {
-                drawer.classList.remove('hidden');
-                setTimeout(() => panel.classList.remove('translate-x-full'), 10);
-            } else {
-                panel.classList.add('translate-x-full');
-                setTimeout(() => drawer.classList.add('hidden'), 300);
-            }
+            const drawer = document.getElementById('wishlist-drawer'), panel = document.getElementById('wishlist-panel');
+            if (drawer.classList.contains('hidden')) { drawer.classList.remove('hidden'); setTimeout(() => panel.classList.remove('translate-x-full'), 10); }
+            else { panel.classList.add('translate-x-full'); setTimeout(() => drawer.classList.add('hidden'), 300); }
         }
 
-        // Direct Web Checkout to Firebase Database
         async function completeWebCheckout() {
             if (cart.length === 0) { showToast("Your bag is empty!"); return; }
             const v = id => document.getElementById(id).value.trim();
             const name = v('co-name'), phone = v('co-phone'), address = v('co-address'), notes = v('co-notes'), pay = v('co-pay');
-            
-            if (!name || phone.replace(/\D/g, '').length < 7 || !address) { 
-                showToast("Please enter your name, valid phone, and delivery address."); 
-                return; 
-            }
+            if (!name || phone.replace(/\D/g, '').length < 7 || !address) { showToast("Please fill in your name, valid phone & address."); return; }
 
             const id = 'SD-' + Date.now().toString(36).slice(-4).toUpperCase() + Math.floor(10 + Math.random() * 90);
             let subtotal = 0;
-            const items = cart.map(i => { 
-                subtotal += i.priceNPR * i.qty; 
-                return { name: i.name, qty: i.qty, size: i.size, priceNPR: i.priceNPR, img: i.image }; 
-            });
+            const items = cart.map(i => { subtotal += i.priceNPR * i.qty; return { name: i.name, qty: i.qty, size: i.size, priceNPR: i.priceNPR, img: i.image }; });
             const total = Math.round(subtotal * (1 - discountPercent));
 
             try {
-                showToast("Submitting your secure order...");
+                showToast("Submitting your order...");
                 if (window.sdSaveOrder) {
-                    await window.sdSaveOrder({ 
-                        id, 
-                        customerName: name, 
-                        phone, 
-                        address, 
-                        notes: notes || "Direct web checkout", 
-                        items, 
-                        totalAmount: total, 
-                        paymentMethod: pay 
-                    });
-                    cart = []; 
-                    saveCart();
+                    await window.sdSaveOrder({ id, customerName: name, phone, address, notes: notes || "Direct web checkout", items, totalAmount: total, paymentMethod: pay });
+                    cart = []; saveCart();
                     ['co-name', 'co-phone', 'co-address', 'co-notes'].forEach(k => document.getElementById(k).value = '');
                     toggleCartDrawer();
-                    showToast(`Order ${id} placed successfully! Check your admin portal.`);
-                } else {
-                    showToast("Firebase syncing is connecting... Please try again in a second.");
-                }
-            } catch (err) {
-                showToast("Order submission error: " + err.message);
-            }
+                    showToast(`Order ${id} placed successfully!`);
+                } else showToast("Database connecting... try again in a second.");
+            } catch (err) { showToast("Error: " + err.message); }
         }
 
-        // Custom Order Modal Controls
         function openCustomOrderModal() {
-            const modal = document.getElementById('custom-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                document.getElementById('custom-modal-content').classList.remove('scale-95', 'opacity-0');
-            }, 10);
+            const modal = document.getElementById('custom-modal'); modal.classList.remove('hidden');
+            setTimeout(() => document.getElementById('custom-modal-content').classList.remove('scale-95', 'opacity-0'), 10);
         }
 
         function closeCustomOrderModal() {
-            const modalContent = document.getElementById('custom-modal-content');
-            modalContent.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => {
-                document.getElementById('custom-modal').classList.add('hidden');
-            }, 300);
+            document.getElementById('custom-modal-content').classList.add('scale-95', 'opacity-0');
+            setTimeout(() => document.getElementById('custom-modal').classList.add('hidden'), 300);
         }
 
         async function submitCustomOrder(e) {
             e.preventDefault();
-            const type = document.getElementById('custom-type').value;
-            const yarn = document.getElementById('custom-yarn').value;
-            const color = document.getElementById('custom-color').value;
-            const details = document.getElementById('custom-details').value;
-
+            const type = document.getElementById('custom-type').value, yarn = document.getElementById('custom-yarn').value, color = document.getElementById('custom-color').value, details = document.getElementById('custom-details').value;
             const id = 'SD-CUST-' + Date.now().toString(36).slice(-4).toUpperCase();
-            const items = [{
-                name: `Custom: ${type}`,
-                qty: 1,
-                size: color,
-                priceNPR: 12000,
-                img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=200&q=80"
-            }];
-
             try {
-                showToast("Submitting custom order request...");
                 if (window.sdSaveOrder) {
-                    await window.sdSaveOrder({
-                        id,
-                        customerName: "Custom Order Inquiry",
-                        phone: "See Request Notes",
-                        address: "Custom Project",
-                        notes: `Yarn: ${yarn} | Color: ${color} | Details: ${details}`,
-                        items,
-                        totalAmount: 12000,
-                        paymentMethod: "Custom Quote"
-                    });
-                    closeCustomOrderModal();
-                    showToast(`Custom Order ${id} submitted to Admin!`);
-                    e.target.reset();
-                } else {
-                    showToast("Database connection initializing...");
+                    await window.sdSaveOrder({ id, customerName: "Custom Order Inquiry", phone: "See Notes", address: "Custom Request", notes: `Yarn: ${yarn} | Color: ${color} | Details: ${details}`, items: [{ name: `Custom: ${type}`, qty: 1, size: color, priceNPR: 12000, img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=200&q=80" }], totalAmount: 12000, paymentMethod: "Custom Quote" });
+                    closeCustomOrderModal(); showToast(`Custom Order ${id} submitted!`); e.target.reset();
                 }
-            } catch (err) {
-                showToast("Submission failed: " + err.message);
-            }
+            } catch (err) { showToast("Submission failed: " + err.message); }
         }
 
-        // Toast Feedback System
         function showToast(msg) {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             toast.className = "glass-pill px-4 py-3 rounded-2xl shadow-2xl text-xs font-semibold flex items-center space-x-2 border border-rose-500/30 transform translate-y-3 opacity-0 transition-all duration-300 pointer-events-auto";
             toast.innerHTML = `<i class="fa-solid fa-sparkles text-rose-500"></i><span>${msg}</span>`;
             container.appendChild(toast);
-
             setTimeout(() => toast.classList.remove('translate-y-3', 'opacity-0'), 10);
-            setTimeout(() => {
-                toast.classList.add('opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+            setTimeout(() => { toast.classList.add('opacity-0'); setTimeout(() => toast.remove(), 300); }, 3000);
         }
 
-        function handleNewsletter(e) {
-            e.preventDefault();
-            showToast("Subscribed to Sio Dhago drops!");
-            e.target.reset();
-        }
-
-        // Theme Toggle
+        function handleNewsletter(e) { e.preventDefault(); showToast("Subscribed!"); e.target.reset(); }
         function toggleTheme() {
             const html = document.documentElement;
-            const icon = document.getElementById('theme-icon');
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                icon.className = "fa-solid fa-moon text-xs";
-                localStorage.setItem('sd_theme', 'light');
-            } else {
-                html.classList.add('dark');
-                icon.className = "fa-solid fa-sun text-xs";
-                localStorage.setItem('sd_theme', 'dark');
-            }
+            if (html.classList.contains('dark')) { html.classList.remove('dark'); localStorage.setItem('sd_theme', 'light'); }
+            else { html.classList.add('dark'); localStorage.setItem('sd_theme', 'dark'); }
         }
 
-        // On Application Load
         window.onload = function() {
-            const savedTheme = localStorage.getItem('sd_theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                document.getElementById('theme-icon').className = "fa-solid fa-sun text-xs";
-            }
-            renderProducts();
-            renderCart();
-            renderWishlist();
+            if (localStorage.getItem('sd_theme') === 'dark') document.documentElement.classList.add('dark');
+            renderProducts(); renderCart(); renderWishlist();
         };
     </script>
 <script type="module">
